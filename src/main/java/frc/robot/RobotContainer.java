@@ -70,7 +70,7 @@ public class RobotContainer {
     // An example command will be run in autonomous
     _swervesubsystem.falseChiu();
     _swervesubsystem.resetGyro();
-    _swervesubsystem.setPose(inintialPose2d);
+    // _swervesubsystem.setPose(inintialPose2d);
     return autoChooser.getSelected();
   }
 }
