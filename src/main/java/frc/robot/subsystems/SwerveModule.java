@@ -56,7 +56,6 @@ public class SwerveModule extends SubsystemBase{
 
         driveEncoder = driveMotor.getEncoder();
         turningEncoder = turningMotor.getEncoder();
-        
         // driveEncoder.setPositionConversionFactor(SwerveModuleConstants.driveEncoderRot2Meter);
         // driveEncoder.setVelocityConversionFactor(SwerveModuleConstants.driveEncoderRPM2MeterPerSec);
         // turningEncoder.setPositionConversionFactor(SwerveModuleConstants.turningEncoderRot2Rad);
@@ -104,6 +103,10 @@ public class SwerveModule extends SubsystemBase{
         turningMotor.set(turningPIDController.calculate(getState().angle.getDegrees(),state.angle.getDegrees()));
         setpointangle = state.angle.getDegrees();
         angle = getState().angle.getDegrees();
+    }
+    public void stop(){
+        driveMotor.set(0);
+        turningMotor.set(0);
     }
 
 

@@ -5,11 +5,13 @@
 package frc.robot;
 import frc.robot.commands.AutoCommand;
 import frc.robot.commands.ManualDrive;
+import frc.robot.subsystems.SwerveModule;
 import frc.robot.subsystems.SwerveSubsystem;
 
 import java.util.List;
 
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.pathplanner.lib.path.GoalEndState;
 import com.pathplanner.lib.path.PathConstraints;
@@ -41,22 +43,23 @@ public class RobotContainer {
   public static final Joystick baseJoystick = new Joystick(0);
   private final SendableChooser<Command> autoChooser;
   // private SendableChooser<Command> m_Chooser = new SendableChooser<>();
-  XboxController joy = new XboxController(0);
-
+  PathPlannerPath path1;
+  public static Pose2d inintialPose2d;
+  public static Pose2d inintPose2d;
   public RobotContainer() {
+    NamedCommands.registerCommand("print", Commands.run(()->{
+      _swervesubsystem.trueChiu();
+    }));
     configureBindings();
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto mode", autoChooser);
+    path1 = PathPlannerPath.fromPathFile("New Path");
+    inintialPose2d = path1.getStartingDifferentialPose();
   }
 
   private void configureBindings() {
-    new JoystickButton(baseJoystick, 1).onTrue(Commands.runOnce(()->{
-      _swervesubsystem.resetGyro();
-    }, _swervesubsystem));
-    new JoystickButton(baseJoystick, 2).onTrue(Commands.runOnce(()->{
-      _swervesubsystem.setPose(new Pose2d(2, 7, new Rotation2d(0)));
-    }, _swervesubsystem));
-  }
+    }
+  
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -65,7 +68,9 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
+    _swervesubsystem.falseChiu();
     _swervesubsystem.resetGyro();
+    _swervesubsystem.setPose(inintialPose2d);
     return autoChooser.getSelected();
   }
 }

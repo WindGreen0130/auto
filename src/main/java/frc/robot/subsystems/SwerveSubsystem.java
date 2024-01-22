@@ -40,6 +40,7 @@ public class SwerveSubsystem extends SubsystemBase{
     private Field2d field = new Field2d();
     private final Pigeon2Configuration gyroConfig = new Pigeon2Configuration();
     private SwerveDriveKinematics kinematics;
+    public boolean chiu = false;
     
     public SwerveSubsystem(){
         gyroConfig.MountPose.MountPoseYaw = 180;
@@ -115,6 +116,14 @@ public class SwerveSubsystem extends SubsystemBase{
     public void resetGyro(){
         gyro.reset();
     }
+
+    public void falseChiu(){
+        chiu = false;
+    }
+    //
+    public void trueChiu(){
+        chiu = true;
+    }
     // 
     public ChassisSpeeds getSpeeds() {
         return kinematics.toChassisSpeeds(getModuleStates());
@@ -163,10 +172,12 @@ public class SwerveSubsystem extends SubsystemBase{
     public void setPose(Pose2d pose){
         mOdometry.resetPosition(gyro.getRotation2d(), getModulePosition(), pose);
     }
+    
     @Override
     public void periodic(){
         mOdometry.update(gyro.getRotation2d(), getModulePosition());
         field.setRobotPose(mOdometry.getPoseMeters());
+        SmartDashboard.putBoolean("true", chiu);
         SmartDashboard.putNumber("X", mOdometry.getPoseMeters().getX());
         SmartDashboard.putNumber("Y", mOdometry.getPoseMeters().getY());
         SmartDashboard.putNumber("odom_Rotation", mOdometry.getPoseMeters().getRotation().getDegrees());
