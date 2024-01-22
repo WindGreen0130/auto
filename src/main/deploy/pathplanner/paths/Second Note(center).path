@@ -32,12 +32,19 @@
   "constraintZones": [],
   "eventMarkers": [
     {
-      "name": "Note in & shoot",
+      "name": "Note in",
       "waypointRelativePos": 0.85,
       "command": {
         "type": "parallel",
         "data": {
-          "commands": []
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "Note in"
+              }
+            }
+          ]
         }
       }
     }

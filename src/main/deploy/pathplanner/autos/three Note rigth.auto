@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 2.0,
-      "y": 7.0
+      "x": 1.33,
+      "y": 4.09
     },
     "rotation": 0
   },
@@ -11,6 +11,18 @@
     "type": "sequential",
     "data": {
       "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "Note shoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
         {
           "type": "path",
           "data": {
@@ -20,19 +32,25 @@
         {
           "type": "named",
           "data": {
-            "name": "print"
+            "name": "Note shoot"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 5.0
+            "waitTime": 0.5
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Second Note(center)"
+            "pathName": "Third Note in wing(From right)"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Note shoot"
           }
         }
       ]
