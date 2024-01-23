@@ -5,6 +5,7 @@
 package frc.robot;
 import frc.robot.commands.AutoCommand;
 import frc.robot.commands.ManualDrive;
+import frc.robot.subsystems.AutoSubsystem;
 import frc.robot.subsystems.SwerveModule;
 import frc.robot.subsystems.SwerveSubsystem;
 
@@ -40,21 +41,20 @@ public class RobotContainer {
   private final SwerveSubsystem _swervesubsystem = new SwerveSubsystem();
   public ManualDrive manualDrive = new ManualDrive(_swervesubsystem);
   public AutoCommand autocommand = new AutoCommand(_swervesubsystem);
+  public AutoSubsystem autoSubsystem = new AutoSubsystem();
   public static final Joystick baseJoystick = new Joystick(0);
   private final SendableChooser<Command> autoChooser;
   // private SendableChooser<Command> m_Chooser = new SendableChooser<>();
-  PathPlannerPath path1;
-  public static Pose2d inintialPose2d;
-  public static Pose2d inintPose2d;
   public RobotContainer() {
-    NamedCommands.registerCommand("print", Commands.run(()->{
-      _swervesubsystem.trueChiu();
-    }));
+    NamedCommands.registerCommand("Note in", Commands.run(()->{
+      autoSubsystem.in();
+    },autoSubsystem));
+    NamedCommands.registerCommand("Note shoot", Commands.run(()->{
+      autoSubsystem.shoot();
+    },autoSubsystem));
     configureBindings();
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto mode", autoChooser);
-    path1 = PathPlannerPath.fromPathFile("New Path");
-    inintialPose2d = path1.getStartingDifferentialPose();
   }
 
   private void configureBindings() {
@@ -70,6 +70,7 @@ public class RobotContainer {
     // An example command will be run in autonomous
     _swervesubsystem.falseChiu();
     _swervesubsystem.resetGyro();
+    autoSubsystem.falsevery();
     // _swervesubsystem.setPose(inintialPose2d);
     return autoChooser.getSelected();
   }
