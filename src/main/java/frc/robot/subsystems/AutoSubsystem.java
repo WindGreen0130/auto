@@ -4,33 +4,36 @@
 
 package frc.robot.subsystems;
 
-import com.pathplanner.lib.path.PathPlannerPath;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class AutoSubsystem extends SubsystemBase {
   /** Creates a new AutoSubsystem. */
-    boolean in = false;
-    boolean shoot = false;
-  public AutoSubsystem() {
+  public boolean in = false;
+  public boolean out = false;
 
-  }
-  public void in(){
-    in = true;
-  }
-  public void shoot(){
-    shoot = true;
-  }
-  public void falsevery(){
+  public AutoSubsystem() {}
+
+  public void inTrue(){
     in = false;
-    shoot=false;
-
   }
+
+  public void shootTrue(){
+    out = true;
+  }
+
+  public void inFalse(){
+    in = false;
+  }
+
+  public void shootFalse(){
+    out = false;
+  }
+
   @Override
   public void periodic() {
     SmartDashboard.putBoolean("in", in);
-    SmartDashboard.putBoolean("shoot", shoot);
+    SmartDashboard.putBoolean("shoot", out);
     // This method will be called once per scheduler run
   }
 }

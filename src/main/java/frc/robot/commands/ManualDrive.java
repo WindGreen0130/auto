@@ -37,7 +37,7 @@ public class ManualDrive extends Command {
     else{
       xSpeed = -Constants.SwerveConstants.joysickValue(baseJoystick.getRawAxis(1), 0.08)*0.2;
       ySpeed = -Constants.SwerveConstants.joysickValue(baseJoystick.getRawAxis(0), 0.08)*0.2;
-      zSpeed = Constants.SwerveConstants.joysickValue(baseJoystick.getRawAxis(4), 0.08)*0.8;
+      zSpeed = Constants.SwerveConstants.joysickValue(baseJoystick.getRawAxis(2), 0.08)*0.8;
     }
     swerveSubsystem.drive(xSpeed, ySpeed, zSpeed, true);
   }

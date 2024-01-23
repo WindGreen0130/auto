@@ -59,13 +59,13 @@ public final class Constants {
     public static final int leftRearCANCoderID = 13;
     public static final int rightRearCANCoderID = 12;
 
-    public static final boolean leftFrontdriveMotorReversed = true;
+    public static final boolean leftFrontdriveMotorReversed = false;
     public static final boolean leftFrontTurningMotorReversed = true;
-    public static final boolean rightFrontDriveMotorReversed = true;
+    public static final boolean rightFrontDriveMotorReversed = false;
     public static final boolean rightfrontTurningMotorReversed = true;
-    public static final boolean leftRearDriveMotorreversed = false;
+    public static final boolean leftRearDriveMotorreversed = true;
     public static final boolean leftRearTurningMotorReversed = true;
-    public static final boolean rightRearDriveMotorReversed = false;
+    public static final boolean rightRearDriveMotorReversed = true;
     public static final boolean rightRearTurningMotorReversed = true;
 
     public static final double leftFrontOffset = 227.0;

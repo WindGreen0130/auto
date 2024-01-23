@@ -43,7 +43,7 @@ public class SwerveSubsystem extends SubsystemBase{
     public boolean chiu = false;
     
     public SwerveSubsystem(){
-        gyroConfig.MountPose.MountPoseYaw = 180;
+        gyroConfig.MountPose.MountPoseYaw = -45;
         // gyroConfig.withMountPose(new MountPoseConfigs().withMountPoseYaw(180));
         gyro.getConfigurator().apply(gyroConfig);
         // Module Set
@@ -90,9 +90,9 @@ public class SwerveSubsystem extends SubsystemBase{
             this::getSpeeds, 
             this::drive_auto, 
             new HolonomicPathFollowerConfig(
-                new PIDConstants(2, 0, 0), // Translation constants 
-                new PIDConstants(2, 0, 0), // Rotation constants 
-                1.5, 
+                new PIDConstants(0.3, 0, 0), // Translation constants 
+                new PIDConstants(0.3, 0, 0), // Rotation constants 
+                0.5, 
                 Units.inchesToMeters(18), // Drive base radius (distance from center to furthest module) 
                 new ReplanningConfig()
             ),
@@ -162,7 +162,7 @@ public class SwerveSubsystem extends SubsystemBase{
         setModuleStates(states);
     }
     public void drive_auto(ChassisSpeeds robotRelativeSpeeds){
-        ChassisSpeeds targetSpeeds = ChassisSpeeds.discretize(robotRelativeSpeeds, 0.05);
+        ChassisSpeeds targetSpeeds = ChassisSpeeds.discretize(robotRelativeSpeeds, 0.02);
         SwerveModuleState[] states = swerveKinematics.toSwerveModuleStates(targetSpeeds);
         setModuleStates(states);
     }
@@ -189,11 +189,16 @@ public class SwerveSubsystem extends SubsystemBase{
         SmartDashboard.putNumber("LR_Angle", leftRearModule.getTurningPosition());
         SmartDashboard.putNumber("RF_Angle", rightFrontModule.getTurningPosition());
         SmartDashboard.putNumber("RR_Angle", rightRearModule.getTurningPosition());
+        SmartDashboard.putNumber("RRMA", rightRearModule.getTurningEncoderPosition());
+        SmartDashboard.putNumber("RFMA", rightFrontModule.getTurningEncoderPosition());
+        SmartDashboard.putNumber("LRMA", leftRearModule.getTurningEncoderPosition());
+        SmartDashboard.putNumber("LFMA", leftFrontModule.getTurningEncoderPosition());
         SmartDashboard.putNumber("LF_Move", leftFrontModule.getDrivePosition());
         SmartDashboard.putNumber("LR_Move", leftRearModule.getDrivePosition());
         SmartDashboard.putNumber("RF_Move", rightFrontModule.getDrivePosition());
         SmartDashboard.putNumber("RR_Move", rightRearModule.getDrivePosition());
         SmartDashboard.putNumber("Factor", SwerveModuleConstants.driveEncoderRot2Meter);
+        SmartDashboard.putNumber("baseangle", gyro.getAngle());
     }
   
 }

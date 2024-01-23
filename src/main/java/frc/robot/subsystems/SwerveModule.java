@@ -45,7 +45,7 @@ public class SwerveModule extends SubsystemBase{
         turningMotor.restoreFactoryDefaults();
         driveMotor.setInverted(driveMotorReversed);
         turningMotor.setInverted(turningMotorReversed);
-        driveMotor.setIdleMode(IdleMode.kCoast);
+        driveMotor.setIdleMode(IdleMode.kBrake);
         turningMotor.setIdleMode(IdleMode.kCoast);
         driveMotor.burnFlash();
         turningMotor.burnFlash();
@@ -112,7 +112,5 @@ public class SwerveModule extends SubsystemBase{
 
     @Override
     public void periodic(){
-        SmartDashboard.putNumber("angle", angle);
-        SmartDashboard.putNumber("setpoint", setpointangle);
     }
 }

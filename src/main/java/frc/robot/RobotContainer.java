@@ -6,6 +6,7 @@ package frc.robot;
 import frc.robot.commands.AutoCommand;
 import frc.robot.commands.ManualDrive;
 import frc.robot.subsystems.AutoSubsystem;
+// import frc.robot.subsystems.AutoSubsystem;
 import frc.robot.subsystems.SwerveModule;
 import frc.robot.subsystems.SwerveSubsystem;
 
@@ -39,19 +40,20 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final SwerveSubsystem _swervesubsystem = new SwerveSubsystem();
+  private final AutoSubsystem _autosubsystem = new AutoSubsystem();
   public ManualDrive manualDrive = new ManualDrive(_swervesubsystem);
   public AutoCommand autocommand = new AutoCommand(_swervesubsystem);
-  public AutoSubsystem autoSubsystem = new AutoSubsystem();
+  // public AutoSubsystem autoSubsystem = new AutoSubsystem();
   public static final Joystick baseJoystick = new Joystick(0);
   private final SendableChooser<Command> autoChooser;
   // private SendableChooser<Command> m_Chooser = new SendableChooser<>();
   public RobotContainer() {
-    NamedCommands.registerCommand("Note in", Commands.run(()->{
-      autoSubsystem.in();
-    },autoSubsystem));
-    NamedCommands.registerCommand("Note shoot", Commands.run(()->{
-      autoSubsystem.shoot();
-    },autoSubsystem));
+    NamedCommands.registerCommand("NoteIn", Commands.run(()->{
+      _autosubsystem.inTrue();
+    }, _autosubsystem).withTimeout(0.5));
+    NamedCommands.registerCommand("NoteShoot", Commands.run(()->{
+      _autosubsystem.shootTrue();
+    }, _autosubsystem).withTimeout(0.5));
     configureBindings();
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto mode", autoChooser);
@@ -69,8 +71,9 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     _swervesubsystem.falseChiu();
-    _swervesubsystem.resetGyro();
-    autoSubsystem.falsevery();
+    _autosubsystem.inFalse();
+    _autosubsystem.shootFalse();
+    // autoSubsystem.falsevery();
     // _swervesubsystem.setPose(inintialPose2d);
     return autoChooser.getSelected();
   }

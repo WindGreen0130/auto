@@ -14,7 +14,7 @@
         {
           "type": "named",
           "data": {
-            "name": "Note shoot"
+            "name": "NoteShoot"
           }
         },
         {
@@ -26,7 +26,25 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Second(right)"
+            "pathName": "Second_right"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "NoteShoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Third Note in wing_Fromright"
           }
         },
         {
@@ -44,25 +62,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Third Note in wing(From right)"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Note shoot"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.5
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "fourth Note in wing(from right)"
+            "pathName": "fourth Note in wingfromright"
           }
         },
         {

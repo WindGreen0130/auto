@@ -14,7 +14,7 @@
         {
           "type": "named",
           "data": {
-            "name": "Note shoot"
+            "name": "NoteShoot"
           }
         },
         {
@@ -32,7 +32,7 @@
         {
           "type": "named",
           "data": {
-            "name": "Note shoot"
+            "name": "NoteShoot"
           }
         },
         {
@@ -44,7 +44,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Third Note in wing(From left )"
+            "pathName": "Third Note in wingFrom_left "
           }
         },
         {
